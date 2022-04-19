@@ -1,7 +1,7 @@
 import { error } from "../utils/LogsHelpers.js";
 
 export class Bebidas {
-  constructor(id, nome, sabor, embalagem, ml) {
+  constructor(id, nome, sabor, embalagem, ml, preco) {
     if (this.constructor == Bebidas)
       throw new Error(
         error("Não é possível instacianar BebidasModel diretamente")
@@ -12,5 +12,6 @@ export class Bebidas {
     this._sabor = sabor;
     this._embalagem = embalagem;
     this._ml = ml;
+    this._preco = preco;
   }
 }
