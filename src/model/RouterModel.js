@@ -15,10 +15,17 @@ export class Router {
    */
   constructor(caminho) {
     /**
+     * @private
      *@property {string}
      */
     this._caminho = caminho;
     /**
+     * @private
+     * @property
+     */
+    this._app = express();
+    /**
+     * @private
      * @property {function} router
      */
     this._router = express.Router();
@@ -36,6 +43,13 @@ export class Router {
    */
   get caminho() {
     return this._caminho;
+  }
+  /**
+   * retorna a propriedade app
+   * @returns this._app
+   */
+  get app() {
+    return this._app;
   }
   /**
    * @method
@@ -62,4 +76,5 @@ export class Router {
   post(callbackfn) {
     this._router.post(`/${this._caminho}`, callbackfn);
   }
+
 }

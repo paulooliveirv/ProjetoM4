@@ -1,4 +1,4 @@
-import { error } from "../utils/LogsHelpers.js";
+import { erro } from "../utils/LogsHelpers.js";
 
 /**
  * @class
@@ -18,7 +18,7 @@ export class Bebidas {
   constructor(id, nome, sabor, embalagem, ml, preco) {
     if (this.constructor == Bebidas)
       throw new Error(
-        error("Não é possível instanciar BebidasModel diretamente")
+        erro("Não é possível instanciar BebidasModel diretamente")
       );
     /**
      * @property

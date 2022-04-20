@@ -3,7 +3,7 @@ import chalk from "chalk";
  * Estiliza a mensagem para vermelho
  * @example console.log(error('Hello World'))
  */
-export const error = chalk.bold.red;
+export const erro = chalk.bold.red;
 
 /**
  * Estiliza a mensagem para amarelo
@@ -15,4 +15,4 @@ export const attention = chalk.yellow;
  * Estiliza a mensagem para verde
  * @example console.log(ok('Hello World'))
  */
-export const ok = chalk.green;
+export const ok = chalk.italic.green;
