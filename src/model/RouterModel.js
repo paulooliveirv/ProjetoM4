@@ -77,4 +77,12 @@ export class Router {
     this._router.post(`/${this._caminho}`, callbackfn);
   }
 
+  /**
+   * @method
+   * Carrega o modulo roteador atribuído à classe
+   * @example this.use
+   */
+  use(){
+    this._app.use(this._router)
+  }
 }

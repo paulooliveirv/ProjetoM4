@@ -31,4 +31,4 @@ bebidas.router.post((req, res) => {
   res.send("post de rota bebidas");
 });
 
-bebidas.router.app.use(bebidas.router.router);
+bebidas.router.use
