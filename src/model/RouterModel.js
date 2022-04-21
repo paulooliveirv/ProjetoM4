@@ -19,11 +19,7 @@ export class Router {
      *@property {string}
      */
     this._caminho = caminho;
-    /**
-     * @private
-     * @property
-     */
-    this._app = express();
+
     /**
      * @private
      * @property {function} router
@@ -45,20 +41,13 @@ export class Router {
     return this._caminho;
   }
   /**
-   * retorna a propriedade app
-   * @returns this._app
-   */
-  get app() {
-    return this._app;
-  }
-  /**
    * @method
    * método get para atribuição de uma função callback no
    * verbo get da rota
    * @param {function} callbackfn
-   *
-   * @example
-   * this.get(callbackfn)
+   *@example this.get(()=>{
+   *  //
+   * })
    */
   get(callbackfn) {
     this._router.get(`/${this._caminho}`, callbackfn);
@@ -66,12 +55,27 @@ export class Router {
 
   /**
    * @method
+   * Método get para atribuição de uma função callback
+   * com paramêtro na rota
+   * @param {String} params
+   * @param {function} callbackfn
+   *
+   * @example this.gentOnly('params', ()=>{
+   * //
+   * })
+   */
+  getOnly(params, callbackfn) {
+    this._router.get(`/${this._caminho}/:${params}`, callbackfn);
+  }
+
+  /**
+   * @method
    * método post para atribuição de uma função callback no
    * verbo post da rota
    * @param {function} callbackfn
-   *
-   * @example
-   * this.post(callbackfn)
+   * @example this.post(()=>{
+   * //
+   * })
    */
   post(callbackfn) {
     this._router.post(`/${this._caminho}`, callbackfn);
@@ -79,10 +83,28 @@ export class Router {
 
   /**
    * @method
-   * Carrega o modulo roteador atribuído à classe
-   * @example this.use
+   * método delete para atribuição de uma função callback
+   * no verbo delete da rota
+   * @param {function} callbackfn
+   * @param {string} parametro
+   * @example this.delete('parametro', ()=>{
+   * //
+   * })
    */
-  use(){
-    this._app.use(this._router)
+  delete(parametro, callbackfn) {
+    this._router.delete(`/${this._caminho}/:${parametro}`, callbackfn);
+  }
+
+  /**
+   * @method
+   * método put para atribuição de uma função callback no verbo put da rota
+   * @example this.put('parametro', ()=>{
+   * //
+   * })
+   * @param {string} parametro
+   * @param {function} callbackfn
+   */
+  put(parametro, callbackfn) {
+    this._router.put(`/${this._caminho}/:${parametro}`, callbackfn);
   }
 }

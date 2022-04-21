@@ -12,23 +12,8 @@ try {
   console.log(erro(error));
 }
 
-// app.get("/", function (req, res) {
-//   res.send("Hello World teste de porta");
-// });
-
-const bebidas = new BebidasController(
-  "skol",
-  "puro malte",
-  "lata",
-  "350ml",
-  3.5
-);
-
-bebidas.router.get((req, res) => {
-  res.send(bebidas);
-});
-bebidas.router.post((req, res) => {
-  res.send("post de rota bebidas");
+app.get("/", function (req, res) {
+  res.send("Hello World teste de porta");
 });
 
-bebidas.router.use
+
