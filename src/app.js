@@ -1,7 +1,7 @@
 import express from "express";
+import { moduloBebidas } from "./controller/BebidasController.js";
 import { ok, erro, attention } from "./utils/LogsHelpers.js";
-import { BebidasController } from "./controller/BebidasController.js";
-const app = express();
+const app= express();
 const port = 3000;
 
 try {
@@ -12,8 +12,10 @@ try {
   console.log(erro(error));
 }
 
+
 app.get("/", function (req, res) {
   res.send("Hello World teste de porta");
 });
 
 
+app.use(moduloBebidas, express.json);
