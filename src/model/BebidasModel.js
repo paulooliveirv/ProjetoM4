@@ -1,4 +1,4 @@
-import { erro } from "../utils/LogsHelpers.js";
+import { erro } from "../utils/LogHelper.js";
 
 /**
  * @class

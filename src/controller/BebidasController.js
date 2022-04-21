@@ -1,22 +1,30 @@
 import { Bebidas } from "../model/BebidasModel.js";
 import { Router } from "../model/routerModel.js";
-import express from "express";
+import { bannerErro } from "../view/banner.js";
+import { BancoController } from "./BancoController.js";
+
 export class BebidasController extends Bebidas {
-  constructor(nome, sabor, embalagem, ml, preco) {
-    super(0, nome, sabor, embalagem, ml, preco);
+  constructor(id, nome, sabor, embalagem, ml, preco) {
+    super(id, nome, sabor, embalagem, ml, preco);
     this.router = new Router("bebidas");
     this.modulo = this.router.router;
+    this.banco = new BancoController();
   }
 }
 
-const bebidas = new BebidasController("skol", "pilsen", "lata", 350, 4.5);
+const bebidas = new BebidasController();
 
 bebidas.router.get((req, res) => {
-  res.send(bebidas);
+  bebidas.banco
+    .requisitarTabela("bebidas")
+    .then((tabela) => res.send({Bebidas: tabela }))
+    .catch((err) => {
+      res.send(bannerErro("Tabela não encontrada"));
+      throw new Error(err);
+    });
 });
-bebidas.router.post((req, res) => {
-  res.send("<h1> post para bebidas</h1>");
-});
+
+bebidas.router.post((req, res) => {});
 
 let id = "1";
 bebidas.router.getOnly(id, (req, res) => {
@@ -34,4 +42,4 @@ bebidas.router.put(id, (req, res) => {
   res.send(`atualizar apenas objeto que bate com o param ${num}`);
 });
 
-export const moduloBebidas = bebidas.modulo
+export const moduloBebidas = bebidas.modulo;
