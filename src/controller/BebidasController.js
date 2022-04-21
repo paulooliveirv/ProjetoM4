@@ -4,10 +4,32 @@ import { bannerErro } from "../view/banner.js";
 import { BancoController } from "./BancoController.js";
 
 export class BebidasController extends Bebidas {
+  /**
+   * Construtor da clsee BebidasController
+   * @param {String} id
+   * @param {String} nome
+   * @param {String} sabor
+   * @param {String} embalagem
+   * @param {float} ml
+   * @param {float} preco
+   */
   constructor(id, nome, sabor, embalagem, ml, preco) {
     super(id, nome, sabor, embalagem, ml, preco);
+    /**
+     *
+     * @instance
+     * instancia da Classe Router
+     */
     this.router = new Router("bebidas");
+    /**
+     * @property
+     * modulo da classe Router instanciada
+     */
     this.modulo = this.router.router;
+    /**
+     * @instance
+     * Instancia da classe BancoController
+     */
     this.banco = new BancoController();
   }
 }
@@ -17,7 +39,7 @@ const bebidas = new BebidasController();
 bebidas.router.get((req, res) => {
   bebidas.banco
     .requisitarTabela("bebidas")
-    .then((tabela) => res.send({Bebidas: tabela }))
+    .then((tabela) => res.send({ Bebidas: tabela }))
     .catch((err) => {
       res.send(bannerErro("Tabela não encontrada"));
       throw new Error(err);
@@ -26,19 +48,18 @@ bebidas.router.get((req, res) => {
 
 bebidas.router.post((req, res) => {});
 
-let id = "1";
-bebidas.router.getOnly(id, (req, res) => {
-  const num = Object.values(req.params);
+bebidas.router.getOnly("id", (req, res) => {
+  const num = req.params.id;
   res.send(`Retornar apenas objeto que bate com o param ${num}`);
 });
 
-bebidas.router.delete(id, (req, res) => {
-  const num = Object.values(req.params);
+bebidas.router.delete("id", (req, res) => {
+  const num = req.params.id;
   res.send(`Deletar apenas objeto que bate com o param ${num}`);
 });
 
-bebidas.router.put(id, (req, res) => {
-  const num = Object.values(req.params);
+bebidas.router.put("id", (req, res) => {
+  const num = req.params.id;
   res.send(`atualizar apenas objeto que bate com o param ${num}`);
 });
 

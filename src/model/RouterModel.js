@@ -11,40 +11,43 @@ export class Router {
   /**
    * @constructs
    * Construtor da classe Router
-   * @param {string} caminho
+   * @param {string} caminho rota que será atribuída em todos
+   * os verbos dessa instância
    */
   constructor(caminho) {
     /**
      * @private
-     *@property {string}
+     *@property {string} rota atribuída
      */
     this._caminho = caminho;
 
     /**
      * @private
-     * @property {function} router
+     * @property {function} Instancia da funcção Router do express
      */
     this._router = express.Router();
   }
   /**
-   * retorna a propriedade router
-   * @returns this._router
+  
+   * @returns a propriedade express.Router()
    */
   get router() {
     return this._router;
   }
   /**
    * retorna a propriedade caminho
-   * @returns this._caminho
+   * @returns retorna a rota atribuída 
    */
   get caminho() {
     return this._caminho;
   }
   /**
    * @method
+   *  
    * método get para atribuição de uma função callback no
    * verbo get da rota
-   * @param {function} callbackfn
+   * @param {requestCallback} callbackfn maneja a resposta e requisição
+   * 
    *@example this.get(()=>{
    *  //
    * })
@@ -57,8 +60,8 @@ export class Router {
    * @method
    * Método get para atribuição de uma função callback
    * com paramêtro na rota
-   * @param {String} params
-   * @param {function} callbackfn
+   * @param {String} params parametro do header da requisição
+   * @param {requestCallback} callbackfn maneja a  requisição e resposta
    *
    * @example this.gentOnly('params', ()=>{
    * //
@@ -72,7 +75,7 @@ export class Router {
    * @method
    * método post para atribuição de uma função callback no
    * verbo post da rota
-   * @param {function} callbackfn
+   * @param {requestCallback} callbackfn maneja a requisição e resposta
    * @example this.post(()=>{
    * //
    * })
@@ -85,14 +88,14 @@ export class Router {
    * @method
    * método delete para atribuição de uma função callback
    * no verbo delete da rota
-   * @param {function} callbackfn
-   * @param {string} parametro
+   * @param {requestCallback} callbackfn maneja a requisição e resposta
+   * @param {string} params parametro do header da requisição
    * @example this.delete('parametro', ()=>{
    * //
    * })
    */
-  delete(parametro, callbackfn) {
-    this._router.delete(`/${this._caminho}/:${parametro}`, callbackfn);
+  delete(params, callbackfn) {
+    this._router.delete(`/${this._caminho}/:${params}`, callbackfn);
   }
 
   /**
@@ -101,10 +104,10 @@ export class Router {
    * @example this.put('parametro', ()=>{
    * //
    * })
-   * @param {string} parametro
-   * @param {function} callbackfn
+   * @param {string} params parametro do header da requisição
+   * @param {requestCallback} callbackfn maneja a requisição e resposta
    */
-  put(parametro, callbackfn) {
-    this._router.put(`/${this._caminho}/:${parametro}`, callbackfn);
+  put(params, callbackfn) {
+    this._router.put(`/${this._caminho}/:${params}`, callbackfn);
   }
 }

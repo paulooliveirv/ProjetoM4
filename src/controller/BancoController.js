@@ -51,7 +51,7 @@ export class BancoController extends Banco {
    * @method
    * Retorna uma Promise auxiliar com a informação
    * sobre o resultado
-   * @param {string} tabela 
+   * @param {string} tabela informe a tabela que será requisitada
    * @returns Promise
    * 
    * @example this.requisitarTabela('tabela')

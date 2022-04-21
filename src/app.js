@@ -1,6 +1,6 @@
 import express from "express";
 import { moduloBebidas } from "./controller/BebidasController.js";
-import { ok, erro, attention } from "./utils/LogHelper.js";
+import {erro, attention } from "./utils/LogHelper.js";
 import { bannerMsg } from "./view/banner.js";
 const app = express();
 const port = 3000;

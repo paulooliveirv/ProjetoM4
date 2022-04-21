@@ -3,9 +3,10 @@ import { erro, ok } from "./LogHelper.js";
 export const search = {
     /***
      * @method
-     * Verifica se a tabela informada existe e retorna uma 
-     * o resultado resultado de uma Promise
-     * @param{string} tabela
+     * Verifica se a tabela informada existe nesta instância
+     * e retorna o resultado de uma Promise
+     * @param{string} tabela informe a tabela para verificação
+     * @returns Promise
      */
   tabela: (tabela) => {
     if (!tabela) {

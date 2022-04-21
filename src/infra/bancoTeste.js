@@ -1,7 +1,7 @@
 export class Banco {
   /**
    *
-   * @param  {Array} bebidas
+   * @param  {Array} bebidas array de objetos bebidas
    */
   constructor(bebidas, drinks) {
     this._bebidas = [];
