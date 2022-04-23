@@ -1,13 +1,13 @@
-import { erro } from "../utils/LogsHelpers.js";
+import { erro } from "../utils/LogHelper.js";
 
 /**
- * @class
+ * @class representando um produto bebida
  * @private
  * Esta classe não pode ser instanciada diretamente
  */
 export class Bebidas {
   /**
-   * Construtor da classe Bebidas
+   *
    * @param {integer} id
    * @param {string} nome
    * @param {string} sabor
@@ -15,40 +15,80 @@ export class Bebidas {
    * @param {float} ml
    * @param {float} preco
    */
-  constructor(id, nome, sabor, embalagem, ml, preco) {
+  constructor(nome, sabor, embalagem, ml, preco) {
     if (this.constructor == Bebidas)
       throw new Error(
         erro("Não é possível instanciar BebidasModel diretamente")
       );
     /**
-     * @property
+     * @property id da bebida
      * @private
      */
-    this._id = id;
+
     /**
-     * @property
+     * @property nome da bebida
      * @private
      */
     this._nome = nome;
     /**
-     * @property
+     * @property sabor da bebida
      * @private
      */
     this._sabor = sabor;
     /**
-     * @property
+     * @property embalagem da bebida
      * @private
      */
     this._embalagem = embalagem;
     /**
-     * @property
+     * @property medida em mililitros da bebida
      * @private
      */
     this._ml = ml;
     /**
-     * @property
+     * @property preço da bebida
      * @private
      */
     this._preco = preco;
+  }
+
+  /**
+   * @returns id da bebida
+   */
+  get id() {
+    return this._id;
+  }
+  /**
+   * @returns nome da bebida
+   */
+  get nome() {
+    return this._nome;
+  }
+  /**
+   * @returns sabor da bebida
+   */
+  get sabor() {
+    return this._sabor;
+  }
+
+  /**
+   * @returns embalagem da bebida
+   */
+  get embalagem() {
+    return this._embalagem;
+  }
+
+  /**
+   * @returns ml da bebida
+   */
+  get ml() {
+    return this._ml;
+  }
+
+  /**
+   * @returns preço da bebida
+   */
+  get preco() {
+    return this._preco;
   }
 }

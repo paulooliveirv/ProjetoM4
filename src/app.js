@@ -1,21 +1,14 @@
 import express from "express";
-import { moduloBebidas } from "./controller/BebidasController.js";
-import { ok, erro, attention } from "./utils/LogsHelpers.js";
-const app= express();
-const port = 3000;
+import { moduloBebidas} from "./controller/BebidasController.js";
+import { bannerErro, bannerMsg } from "./view/banner.js";
+const app = express();
 
-try {
-  app.listen(port, () =>
-    console.log(ok(`app funcionando em http://localhost:${port}`))
-  );
-} catch (error) {
-  console.log(erro(error));
-}
+app.use(express.json());
+app.use(moduloBebidas);
 
 
-app.get("/", function (req, res) {
-  res.send("Hello World teste de porta");
+app.get("/", (req, res) => {
+  res.send(bannerMsg("Porta Principal Funcionando"));
 });
 
-
-app.use(moduloBebidas, express.json);
+export default app;
