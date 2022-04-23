@@ -83,11 +83,3 @@ bebidas.router.put("id", (req, res) => {
 });
 
 export const moduloBebidas = bebidas.modulo;
-
-// ( bebidas.banco
-//   .requisitarTabela("bebidas")
-//   .then((tabela) => res.send({ Bebidas: tabela }))
-//   .catch((err) => {
-//     res.send(bannerErro("Tabela não encontrada"));
-//     throw new Error(err);
-//   }))
