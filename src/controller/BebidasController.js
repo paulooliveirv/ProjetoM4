@@ -42,7 +42,7 @@ bebidas.router.get((req, res) => {
 
 bebidas.router.post((req, res) => {
   let bebida = valores(req.body);
-  bebidas.Tabela.inserirLinhas(bebida)
+  bebidas.Tabela.incluirBebida(bebida)
     .then((data) => res.send(data))
     .catch((err) => {
       console.log(err);
@@ -77,7 +77,7 @@ bebidas.router.delete("id", (req, res) => {
 });
 
 bebidas.router.put("id", (req, res) => {
-  bebidas.Tabela.atualizarItem(req.params.id, req.body)
+  bebidas.Tabela.atualizarBebida(req.params.id, req.body)
     .then((data) => res.status(200).send(data))
     .catch((err) => res.status(428).send(err));
 });

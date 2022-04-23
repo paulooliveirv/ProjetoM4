@@ -2,11 +2,11 @@ import { bd } from "../infra/sqlite-db.js";
 
 import {
   selecioneTudo,
-  inserirValores,
+  inserirBebidas,
   filtro,
   item,
   excluido,
-  atualizado,
+  atualizaBebida,
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
@@ -33,7 +33,7 @@ export class TabelaController {
     });
   }
   /**
-   * Insere novos valores na tabela selecionada e
+   * Insere novos valores na tabela Bebidas selecionada e
    * retorna uma Promise com o resultado da requisição.
    *
    * @param {object} body valores que serão inseridos
@@ -43,9 +43,9 @@ export class TabelaController {
    * .then(data => ...)
    * .catch(err => ...)
    */
-  inserirLinhas(body) {
+  incluirBebida(body) {
     return new Promise((resolve, reject) => {
-      this.bd.run(inserirValores(body, this.tabela), (resul, err) => {
+      this.bd.run(inserirBebidas(body, this.tabela), (resul, err) => {
         if (err) reject(erro(err));
         resolve("Produto adicionado com sucesso");
       });
@@ -107,11 +107,11 @@ export class TabelaController {
     });
   }
 
-  atualizarItem(id, body) {
+  atualizarBebida(id, body) {
     console.log(Object.values(body));
     return new Promise((resolve, reject) => {
       this.bd.run(
-        atualizado(id, this.tabela),
+        atualizaBebida(id, this.tabela),
         Object.values(body),
         (result, err) => {
           if (err) reject(err);
