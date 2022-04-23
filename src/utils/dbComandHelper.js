@@ -23,3 +23,12 @@ export const inserirValores = (obj, tabela) =>
     '${obj.preco}'
 )
 `;
+
+export const filtro = (coluna, valor, tabela) =>
+  `select * from ${tabela}
+      where ${coluna} like '%${valor}%'`;
+
+export const item = (id, tabela) => `select * from ${tabela}
+where id = ${id}`;
+
+export const excluido = (id, tabela)=> `delete from ${tabela} where id = ${id}`

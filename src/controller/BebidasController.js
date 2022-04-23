@@ -27,37 +27,57 @@ export class BebidasController extends Bebidas {
      */
     this.modulo = this.router.router;
 
-    this.Tabela = new TabelaController();
+    this.Tabela = new TabelaController("bebidas");
   }
 }
 
 const bebidas = new BebidasController();
 bebidas.router.get((req, res) => {
-  bebidas.Tabela.requisitarTabela("bebidas")
+  bebidas.Tabela.requisitarTabela()
     .then((data) => res.send({ bebidas: data }))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      res.status(404).send({ erro: err });
+    });
 });
 
-bebidas.router.post(async (req, res) => {
+bebidas.router.post((req, res) => {
   let bebida = valores(req.body);
-  await bebidas.Tabela.inserirLinhas(bebida, "bebidas")
+  bebidas.Tabela.inserirLinhas(bebida)
     .then((data) => res.send(data))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      res.status(406).send(err);
+    });
+});
+
+bebidas.router.filter("col", "valor", (req, res) => {
+  let coluna = req.params.col;
+  let valor = req.params.valor;
+  bebidas.Tabela.filtraTabela(coluna, valor)
+    .then((data) => res.send(data))
+    .catch((err) => {
+      console.log(err);
+      res.status(404).send({ erro: "Item não encontrado" });
+    });
 });
 
 bebidas.router.getOnly("id", (req, res) => {
-  const num = req.params.id;
-  res.send(`Retornar apenas objeto que bate com o param ${num}`);
+  bebidas.Tabela.requisitarItem(req.params.id)
+    .then((data) => res.send(data))
+    .catch((err) => {
+      res.status(404).send({ erro: "Item não encontrado" });
+      console.log(err);
+    });
 });
 
 bebidas.router.delete("id", (req, res) => {
-  const num = req.params.id;
-  res.send(`Deletar apenas objeto que bate com o param ${num}`);
+  bebidas.Tabela.deletarItem(req.params.id)
+    .then((data) => res.send(data))
+    .catch((err) => console.log(err))
 });
 
 bebidas.router.put("id", (req, res) => {
-  const num = req.params.id;
-  res.send(`atualizar apenas objeto que bate com o param ${num}`);
+  
 });
 
 export const moduloBebidas = bebidas.modulo;

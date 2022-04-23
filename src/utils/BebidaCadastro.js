@@ -8,7 +8,7 @@ import { erro } from "./LogHelper.js";
  */
 export const valores = (obj) => {
   let bebida = verificaObj(obj);
-  if (!bebida) console.log(erro("Valores não informados devidamente"));
+  if (!bebida) throw new Error("Verifique os valores");
   return novaBebida(bebida);
 };
 
