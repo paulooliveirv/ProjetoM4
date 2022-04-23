@@ -1,8 +1,7 @@
 import { Bebidas } from "../model/BebidasModel.js";
 import { Router } from "../model/routerModel.js";
-import { erro } from "../utils/LogHelper.js";
-import { BancoController } from "./BancoController.js";
-
+import { valores } from "../utils/BebidaCadastro.js";
+import { TabelaController } from "./TabelaController.js";
 
 export class BebidasController extends Bebidas {
   /**
@@ -28,21 +27,22 @@ export class BebidasController extends Bebidas {
      */
     this.modulo = this.router.router;
 
-    this.banco = new BancoController();
+    this.Tabela = new TabelaController();
   }
 }
 
 const bebidas = new BebidasController();
-
 bebidas.router.get((req, res) => {
-  bebidas.banco
-    .requisitarTabela("bebidas")
+  bebidas.Tabela.requisitarTabela("bebidas")
     .then((data) => res.send({ bebidas: data }))
-    .catch((err) => console.log(erro(err)));
+    .catch((err) => console.log(err));
 });
 
-bebidas.router.post((req, res) => {
-    
+bebidas.router.post(async (req, res) => {
+  let bebida = valores(req.body);
+  await bebidas.Tabela.inserirLinhas(bebida, "bebidas")
+    .then((data) => res.send(data))
+    .catch((err) => console.log(err));
 });
 
 bebidas.router.getOnly("id", (req, res) => {

@@ -1,6 +1,5 @@
 import express from "express";
 import { moduloBebidas} from "./controller/BebidasController.js";
-import { erro, attention } from "./utils/LogHelper.js";
 import { bannerErro, bannerMsg } from "./view/banner.js";
 const app = express();
 
