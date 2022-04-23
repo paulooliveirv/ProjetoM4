@@ -18,3 +18,5 @@ export const bannerMsg = (msg) => `
 <h1 style="color:orange;text-align:center">
 ${msg}
 </h1>`;
+
+

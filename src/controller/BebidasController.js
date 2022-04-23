@@ -1,7 +1,8 @@
 import { Bebidas } from "../model/BebidasModel.js";
 import { Router } from "../model/routerModel.js";
-import { bannerErro } from "../view/banner.js";
+import { erro } from "../utils/LogHelper.js";
 import { BancoController } from "./BancoController.js";
+
 
 export class BebidasController extends Bebidas {
   /**
@@ -13,8 +14,8 @@ export class BebidasController extends Bebidas {
    * @param {float} ml
    * @param {float} preco
    */
-  constructor(id, nome, sabor, embalagem, ml, preco) {
-    super(id, nome, sabor, embalagem, ml, preco);
+  constructor(nome, sabor, embalagem, ml, preco) {
+    super(nome, sabor, embalagem, ml, preco);
     /**
      *
      * @instance
@@ -26,10 +27,7 @@ export class BebidasController extends Bebidas {
      * modulo da classe Router instanciada
      */
     this.modulo = this.router.router;
-    /**
-     * @instance
-     * Instancia da classe BancoController
-     */
+
     this.banco = new BancoController();
   }
 }
@@ -39,14 +37,13 @@ const bebidas = new BebidasController();
 bebidas.router.get((req, res) => {
   bebidas.banco
     .requisitarTabela("bebidas")
-    .then((tabela) => res.send({ Bebidas: tabela }))
-    .catch((err) => {
-      res.send(bannerErro("Tabela não encontrada"));
-      throw new Error(err);
-    });
+    .then((data) => res.send({ bebidas: data }))
+    .catch((err) => console.log(erro(err)));
 });
 
-bebidas.router.post((req, res) => {});
+bebidas.router.post((req, res) => {
+    
+});
 
 bebidas.router.getOnly("id", (req, res) => {
   const num = req.params.id;
@@ -64,3 +61,11 @@ bebidas.router.put("id", (req, res) => {
 });
 
 export const moduloBebidas = bebidas.modulo;
+
+// ( bebidas.banco
+//   .requisitarTabela("bebidas")
+//   .then((tabela) => res.send({ Bebidas: tabela }))
+//   .catch((err) => {
+//     res.send(bannerErro("Tabela não encontrada"));
+//     throw new Error(err);
+//   }))
