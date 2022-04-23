@@ -73,11 +73,13 @@ bebidas.router.getOnly("id", (req, res) => {
 bebidas.router.delete("id", (req, res) => {
   bebidas.Tabela.deletarItem(req.params.id)
     .then((data) => res.send(data))
-    .catch((err) => console.log(err))
+    .catch((err) => console.log(err));
 });
 
 bebidas.router.put("id", (req, res) => {
-  
+  bebidas.Tabela.atualizarItem(req.params.id, req.body)
+    .then((data) => res.status(200).send(data))
+    .catch((err) => res.status(428).send(err));
 });
 
 export const moduloBebidas = bebidas.modulo;

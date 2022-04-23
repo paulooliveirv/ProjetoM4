@@ -6,6 +6,7 @@ import {
   filtro,
   item,
   excluido,
+  atualizado,
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
@@ -103,6 +104,20 @@ export class TabelaController {
         if (err) reject(err);
         resolve("Item apagado");
       });
+    });
+  }
+
+  atualizarItem(id, body) {
+    console.log(Object.values(body));
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        atualizado(id, this.tabela),
+        Object.values(body),
+        (result, err) => {
+          if (err) reject(err);
+          resolve("Produto atualizado", result);
+        }
+      );
     });
   }
 }

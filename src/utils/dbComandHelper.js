@@ -31,4 +31,16 @@ export const filtro = (coluna, valor, tabela) =>
 export const item = (id, tabela) => `select * from ${tabela}
 where id = ${id}`;
 
-export const excluido = (id, tabela)=> `delete from ${tabela} where id = ${id}`
+export const excluido = (id, tabela) =>
+  `delete from ${tabela} where id = ${id}`;
+
+export const atualizado = (id, tabela) =>
+  `update ${tabela} set nome =?, sabor= ?, embalagem = ?, ml= ?, preco=? where id= ${id}`;
+
+// {
+//   return (
+//     `update ${tabela} set nome=?, sabor=?, embalagem=?, ml=?, preco=?
+//     where id = ${id}`,
+//     [body.nome, body.sabor, body.embalagem, body.ml, body.preco]
+//   );
+// };
