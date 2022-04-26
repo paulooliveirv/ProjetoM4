@@ -1,4 +1,4 @@
-import { bd } from "../infra/sqlite-db.js";
+import { bd } from "../services/sqlite-db.js";
 
 import {
   selecioneTudo,
@@ -29,25 +29,6 @@ export class TabelaController {
       this.bd.all(selecioneTudo(this.tabela), (err, rows) => {
         if (err) reject(erro(err));
         resolve(rows);
-      });
-    });
-  }
-  /**
-   * Insere novos valores na tabela Bebidas selecionada e
-   * retorna uma Promise com o resultado da requisição.
-   *
-   * @param {object} body valores que serão inseridos
-   * @returns Promise
-   *
-   * @example this.inserirLinhas('body')
-   * .then(data => ...)
-   * .catch(err => ...)
-   */
-  incluirBebida(body) {
-    return new Promise((resolve, reject) => {
-      this.bd.run(inserirBebidas(body, this.tabela), (resul, err) => {
-        if (err) reject(erro(err));
-        resolve("Produto adicionado com sucesso");
       });
     });
   }
@@ -115,6 +96,29 @@ export class TabelaController {
         (result, err) => {
           if (err) reject(err);
           resolve("Produto atualizado", result);
+        }
+      );
+    });
+  }
+  /**
+   * Insere novos valores na tabela Bebidas selecionada e
+   * retorna uma Promise com o resultado da requisição.
+   *
+   * @param {object} body valores que serão inseridos
+   * @returns Promise
+   *
+   * @example this.inserirLinhas('body')
+   * .then(data => ...)
+   * .catch(err => ...)
+   */
+  incluirBebida(body) {
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        inserirBebidas(body, this.tabela),
+        Object.values(body),
+        (resul, err) => {
+          if (err) reject(erro(err));
+          resolve("Produto adicionado com sucesso");
         }
       );
     });

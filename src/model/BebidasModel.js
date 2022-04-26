@@ -8,7 +8,6 @@ import { erro } from "../utils/LogHelper.js";
 export class Bebidas {
   /**
    *
-   * @param {integer} id
    * @param {string} nome
    * @param {string} sabor
    * @param {string} embalagem
@@ -20,10 +19,6 @@ export class Bebidas {
       throw new Error(
         erro("Não é possível instanciar BebidasModel diretamente")
       );
-    /**
-     * @property id da bebida
-     * @private
-     */
 
     /**
      * @property nome da bebida
@@ -52,12 +47,6 @@ export class Bebidas {
     this._preco = preco;
   }
 
-  /**
-   * @returns id da bebida
-   */
-  get id() {
-    return this._id;
-  }
   /**
    * @returns nome da bebida
    */

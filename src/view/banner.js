@@ -1,3 +1,6 @@
+//pasta view e conteúdo só existem a título de estudo :)
+
+
 /**
  *
  * @param {string} msg mensagem que será exibida como resposta de

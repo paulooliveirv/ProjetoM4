@@ -15,13 +15,7 @@ export const inserirBebidas = (obj, tabela) =>
   `insert into ${tabela}
     (nome, sabor, embalagem, ml, preco)
     values
-(
-    '${obj.nome}',
-    '${obj.sabor}',
-    '${obj.embalagem}',
-    '${obj.ml}',
-    '${obj.preco}'
-)
+    (?,?,?,?,?)
 `;
 /**
  *

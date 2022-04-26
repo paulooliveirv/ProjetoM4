@@ -6,7 +6,6 @@ import { TabelaController } from "./TabelaController.js";
 export class BebidasController extends Bebidas {
   /**
    * Construtor da clsee BebidasController
-   * @param {String} id
    * @param {String} nome
    * @param {String} sabor
    * @param {String} embalagem
@@ -30,31 +29,32 @@ export class BebidasController extends Bebidas {
     this.Tabela = new TabelaController("bebidas");
   }
 }
-
 const bebidas = new BebidasController();
+
 bebidas.router.get((req, res) => {
   bebidas.Tabela.requisitarTabela()
-    .then((data) => res.send({ bebidas: data }))
+    .then((data) => res.status(200).json({ bebidas: data }))
     .catch((err) => {
-      res.status(404).send({ erro: err });
+      res.status(404).json({ erro: err });
     });
 });
 
 bebidas.router.post((req, res) => {
-  let bebida = valores(req.body);
-  bebidas.Tabela.incluirBebida(bebida)
-    .then((data) => res.send(data))
-    .catch((err) => {
-      console.log(err);
-      res.status(406).send(err);
-    });
+  try {
+    let bebida = valores(req.body);
+    bebidas.Tabela.incluirBebida(bebida).then((data) =>
+      res.json({ [data]: req.body })
+    );
+  } catch (erro) {
+    res.status(406).json({ erro: "Verifique os valores" });
+  }
 });
 
 bebidas.router.filter("col", "valor", (req, res) => {
-  let coluna = req.params.col;
-  let valor = req.params.valor;
-  bebidas.Tabela.filtraTabela(coluna, valor)
-    .then((data) => res.send(data))
+  const { col, valor } = req.params;
+
+  bebidas.Tabela.filtraTabela(col, valor)
+    .then((data) => res.status(200).json({ [col]: data }))
     .catch((err) => {
       console.log(err);
       res.status(404).send({ erro: "Item não encontrado" });
@@ -63,23 +63,23 @@ bebidas.router.filter("col", "valor", (req, res) => {
 
 bebidas.router.getOnly("id", (req, res) => {
   bebidas.Tabela.requisitarItem(req.params.id)
-    .then((data) => res.send(data))
+    .then((data) => res.status(200).json(data))
     .catch((err) => {
-      res.status(404).send({ erro: "Item não encontrado" });
+      res.status(404).json({ erro: "Item não encontrado" });
       console.log(err);
     });
 });
 
 bebidas.router.delete("id", (req, res) => {
   bebidas.Tabela.deletarItem(req.params.id)
-    .then((data) => res.send(data))
+    .then((data) => res.status(200).json({ [data]: req.params.id }))
     .catch((err) => console.log(err));
 });
 
 bebidas.router.put("id", (req, res) => {
   bebidas.Tabela.atualizarBebida(req.params.id, req.body)
-    .then((data) => res.status(200).send(data))
-    .catch((err) => res.status(428).send(err));
+    .then((data) => res.status(200).json({ [data]: req.params.id }))
+    .catch((err) => res.status(428).json({ erro: err }));
 });
 
 export const moduloBebidas = bebidas.modulo;

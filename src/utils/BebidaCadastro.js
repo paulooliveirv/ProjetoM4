@@ -8,7 +8,10 @@ import { erro } from "./LogHelper.js";
  */
 export const valores = (obj) => {
   let bebida = verificaObj(obj);
-  if (!bebida) throw new Error("Verifique os valores");
+  if (!bebida) {
+    console.log(erro("Valores não podem ser nulos ou inexistentes"));
+    throw new Error("Verifique os valores");
+  }
   return novaBebida(bebida);
 };
 
@@ -20,20 +23,14 @@ export const valores = (obj) => {
  * @throws error caso algum valor seja omitido
  */
 const verificaObj = (obj) => {
-  try {
-    if (contemValores(obj))
-      return new BebidasController(
-        obj.nome,
-        obj.sabor,
-        obj.embalagem,
-        obj.ml,
-        obj.preco
-      );
-
-    throw new Error("Valores não podem ser nulos ou inexistentes");
-  } catch (err) {
-    console.log(erro(err));
-  }
+  if (contemValores(obj))
+    return new BebidasController(
+      obj.nome,
+      obj.sabor,
+      obj.embalagem,
+      obj.ml,
+      obj.preco
+    );
 };
 /**
  * Filtra a classe BebidasController e retorna apenas
