@@ -10,9 +10,28 @@ import {
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
+/**
+ * @class
+ * Instancia de uma tabela com métodos que se comunicam
+ * com a sintaxe SQLite.
+ */
 export class TabelaController {
+  /**
+   * 
+   * @param {string} tabela nomeia a tabela que a classe representará
+   * nos métodos.
+   */
   constructor(tabela) {
+    /**
+     * @property
+     * representa a instancia do banco de dados SQLite
+     */
     this.bd = bd;
+
+    /**
+     * @property
+     * tabela informada para representar a tabela na sintaxe SQLite
+     */
     this.tabela = tabela;
   }
 
