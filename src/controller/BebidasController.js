@@ -1,6 +1,7 @@
 import { Bebidas } from "../model/BebidasModel.js";
 import { Router } from "../model/routerModel.js";
 import { valores } from "../utils/BebidaCadastro.js";
+import { valida } from "../utils/validacao.js";
 import { TabelaController } from "./TabelaController.js";
 
 export class BebidasController extends Bebidas {
@@ -40,19 +41,19 @@ bebidas.router.get((req, res) => {
 });
 
 bebidas.router.post((req, res) => {
-  try {
-    let bebida = valores(req.body);
+  let resposta = valida(req.body);
+  if (resposta !== true) {
+    res.status(400).json({ erro: resposta });
+  } else {
+    const bebida = valores(req.body);
     bebidas.Tabela.incluirBebida(bebida).then((data) =>
-      res.json({ [data]: req.body })
+      res.status(201).json({ [data]: req.body })
     );
-  } catch (erro) {
-    res.status(406).json({ erro: "Verifique os valores" });
   }
 });
 
 bebidas.router.filter("col", "valor", (req, res) => {
   const { col, valor } = req.params;
-
   bebidas.Tabela.filtraTabela(col, valor)
     .then((data) => res.status(200).json({ [col]: data }))
     .catch((err) => {
@@ -73,13 +74,21 @@ bebidas.router.getOnly("id", (req, res) => {
 bebidas.router.delete("id", (req, res) => {
   bebidas.Tabela.deletarItem(req.params.id)
     .then((data) => res.status(200).json({ [data]: req.params.id }))
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 bebidas.router.put("id", (req, res) => {
-  bebidas.Tabela.atualizarBebida(req.params.id, req.body)
-    .then((data) => res.status(200).json({ [data]: req.params.id }))
-    .catch((err) => res.status(428).json({ erro: err }));
+  let resposta = valida(req.body);
+
+  if (resposta !== true) {
+    res.status(400).send({ erro: resposta });
+  } else {
+    bebidas.Tabela.atualizarBebida(req.params.id, req.body)
+      .then((data) => res.status(200).json({ [data]: req.params.id }))
+      .catch((err) => res.status(428).json({ erro: err }));
+  }
 });
 
 export const moduloBebidas = bebidas.modulo;

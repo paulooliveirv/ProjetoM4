@@ -17,7 +17,7 @@ import { erro } from "../utils/LogHelper.js";
  */
 export class TabelaController {
   /**
-   * 
+   *
    * @param {string} tabela nomeia a tabela que a classe representará
    * nos métodos.
    */
@@ -135,8 +135,8 @@ export class TabelaController {
       this.bd.run(
         inserirBebidas(body, this.tabela),
         Object.values(body),
-        (resul, err) => {
-          if (err) reject(erro(err));
+        (err, resul) => {
+          if (err) reject(err);
           resolve("Produto adicionado com sucesso");
         }
       );
