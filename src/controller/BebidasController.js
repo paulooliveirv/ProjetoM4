@@ -1,5 +1,5 @@
 import { Bebidas } from "../model/BebidasModel.js";
-import { Router } from "../model/routerModel.js";
+import { Router } from "../model/RouterModel.js";
 import { valores } from "../utils/BebidaCadastro.js";
 import { valida } from "../utils/validacao.js";
 import { TabelaController } from "./TabelaController.js";
