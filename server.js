@@ -1,6 +1,6 @@
 import http from "http";
-import app from "../app.js";
-import { attention } from "../utils/LogHelper.js";
+import app from "./src/app.js";
+import { attention } from "./src/utils/LogHelper.js";
 const port = process.env.PORT || 3000;
 const server = http.createServer(app);
 
