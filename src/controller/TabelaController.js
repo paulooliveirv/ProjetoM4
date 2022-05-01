@@ -6,7 +6,7 @@ import {
   filtro,
   item,
   excluido,
-  atualizaBebida, 
+  atualizaBebida,
   atualizaLanches,
   inserirLanches,
 } from "../utils/dbComandHelper.js";
@@ -160,8 +160,9 @@ export class TabelaController {
   }
   incluirLanches(body) {
     return new Promise((resolve, reject) => {
+      console.log(this.tabela);
       this.bd.run(
-        inserirLanches(body, this.tabela),
+        inserirLanches(this.tabela),
         Object.values(body),
         (resul, err) => {
           if (err) reject(erro(err));
@@ -171,4 +172,3 @@ export class TabelaController {
     });
   }
 }
-

@@ -7,8 +7,7 @@ const app = express();
 
 app.use(express.json(), cors());
 
-app.use(moduloBebidas);
-app.use(moduloLanches);
+app.use(moduloBebidas, moduloLanches);
 
 app.get("/", (req, res) => {
   res.send(bannerMsg("Porta Principal Funcionando"));
@@ -19,4 +18,3 @@ app.get("/*", (req, res) => {
 });
 
 export default app;
-

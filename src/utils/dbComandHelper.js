@@ -26,11 +26,11 @@ export const inserirBebidas = (obj, tabela) =>
  * @returns {string} insert into ${tabela} (rows) values
  */
 
-    export const inserirLanches = (obj, tabela) =>
+    export const inserirLanches = (tabela) =>
     `insert into ${tabela}
     (nome, sabor, preco)
     values
-    (?,?,?,?,?)
+    (?,?,?)
 `;
 
 /**

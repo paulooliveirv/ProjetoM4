@@ -25,7 +25,7 @@ export class Router {
      * @private
      * @property {function} Instancia da funcção Router do express
      */
-    this._router = express.Router({ caseSensitive: false });
+    this._router = express.Router({ caseSensitive: false }); 
   }
   /**
   

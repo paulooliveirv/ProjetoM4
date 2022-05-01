@@ -37,9 +37,8 @@ lanches.router.get((req, res) => {
 });
 
 lanches.router.post((req, res) => {
-  try {
-    //let Lanches = valores(req.body);
-    lanches.Tabela.incluirLanches(lanches).then((data) =>
+  try {    
+    lanches.Tabela.incluirLanches(req.body).then((data) =>
       res.json({ [data]: req.body })
     );
   } catch (erro) {
@@ -49,7 +48,6 @@ lanches.router.post((req, res) => {
 
 lanches.router.filter("col", "valor", (req, res) => {
   const { col, valor } = req.params;
-
   lanches.Tabela.filtraTabela(col, valor)
     .then((data) => res.status(200).json({ [col]: data }))
     .catch((err) => {
@@ -79,4 +77,4 @@ lanches.router.put("id", (req, res) => {
     .catch((err) => res.status(428).json({ erro: err }));
 });
 
-export const moduloLanches= lanches.router.router;
+export const moduloLanches= lanches.modulo;
