@@ -1,12 +1,14 @@
 import express from "express";
 import cors from "cors";
 import { moduloBebidas } from "./controller/BebidasController.js";
+import { moduloLanches } from "./controller/LanchesController.js";
 import { bannerErro, bannerMsg } from "./view/banner.js";
 const app = express();
 
 app.use(express.json(), cors());
 
 app.use(moduloBebidas);
+app.use(moduloLanches);
 
 app.get("/", (req, res) => {
   res.send(bannerMsg("Porta Principal Funcionando"));
