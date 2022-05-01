@@ -5,6 +5,7 @@ import { bannerErro, bannerMsg } from "./view/banner.js";
 const app = express();
 
 app.use(express.json(), cors());
+
 app.use(moduloBebidas);
 
 app.get("/", (req, res) => {
@@ -16,3 +17,4 @@ app.get("/*", (req, res) => {
 });
 
 export default app;
+
