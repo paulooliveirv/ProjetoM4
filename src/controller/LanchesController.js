@@ -1,5 +1,5 @@
 import { Lanches } from "../model/LanchesModel.js";
-import { Router } from "../model/routerModel.js";
+import { Router } from "../model/RouterModel.js";
 import { TabelaController } from "./TabelaController.js";
 
 export class LanchesController extends Lanches {
@@ -37,7 +37,7 @@ lanches.router.get((req, res) => {
 });
 
 lanches.router.post((req, res) => {
-  try {    
+  try {
     lanches.Tabela.incluirLanches(req.body).then((data) =>
       res.json({ [data]: req.body })
     );
@@ -77,4 +77,4 @@ lanches.router.put("id", (req, res) => {
     .catch((err) => res.status(428).json({ erro: err }));
 });
 
-export const moduloLanches= lanches.modulo;
+export const moduloLanches = lanches.modulo;
