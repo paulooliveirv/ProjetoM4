@@ -1,22 +1,23 @@
 {
-  "name": "api_pub",
-  "version": "1.0.0",
-  "description": "Projeto de Modulo 5 da Resilia. Criação de API básica com NodeJS e bibliotecas.",
-  "main": "index.js",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon ./src/services/server.js"
-  },
-  "keywords": [],
-  "author": "[Edu, Karla, Guilherme, Paulo]",
-  "license": "ISC",
-  "dependencies": {
-    "chalk": "^5.0.1",
-    "express": "^4.17.3",
-    "nodemon": "^2.0.15",
-    "path": "^0.12.7",
-    "sqlite": "^4.0.25",
-    "sqlite3": "^5.0.5"
-  }
+    "name": "api_pub",
+    "version": "1.0.0",
+    "description": "Projeto de Modulo 5 da Resilia. Criação de API básica com NodeJS e bibliotecas.",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node ./src/services/server.js",
+        "dev": "nodemon ./src/services/server.js"
+    },
+    "keywords": [],
+    "author": "[Edu, Karla, Guilherme, Paulo, Marcilane]",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "express": "^4.17.3",
+        "nodemon": "^2.0.15",
+        "path": "^0.12.7",
+        "sqlite": "^4.0.25",
+        "sqlite3": "^5.0.5"
+    }
 }
