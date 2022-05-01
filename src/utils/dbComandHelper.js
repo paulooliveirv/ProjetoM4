@@ -23,6 +23,23 @@ export const inserirBebidas = (obj, tabela) =>
     '${obj.preco}'
 )
 `;
+
+/**
+ * metodo reservado apenas para tabela Drinks
+ * @param {string} body corpo da requisição
+ * @param {string} tabela tabela que deseja inserir os valores
+ * @returns {string} insert into ${tabela} (rows) values
+ */
+ export const inserirDrinks = (obj, tabela) =>
+ `insert into ${tabela}
+   (nome, sabor, preco)
+   values
+(
+   '${obj.nome}',
+   '${obj.sabor}',
+   '${obj.preco}'
+)
+`;
 /**
  *
  * @param {string} coluna coluna que deseja usar como filtro
@@ -61,3 +78,14 @@ export const excluido = (id, tabela) =>
  */
 export const atualizaBebida = (id, tabela) =>
   `update ${tabela} set nome =?, sabor= ?, embalagem = ?, ml= ?, preco=? where id= ${id}`;
+
+
+  /**
+ * método reservado apenas para tabela Drinks
+ * atualiza o item selecionado através da id
+ * @param {string} id id do item que deseja atualizar
+ * @param {string} tabela a qual o item selecionado pertence
+ * @returns {string} `update ${tabela} set values
+ */
+   export const atualizaDrink = (id, tabela) =>
+   `update ${tabela} set nome =?, sabor= ?, preco=? where id= ${id}`;
