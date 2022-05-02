@@ -50,6 +50,19 @@ export const inserirDrinks = (obj, tabela) =>
 `;
 
 /**
+ * metodo reservado apenas para tabela Combos
+ * @param {string} body corpo da requisição
+ * @param {string} tabela tabela que deseja inserir os valores
+ * @returns {string} insert into ${tabela} (rows) values
+ */
+export const inserirCombo = (tabela) => {
+  return `insert into ${tabela}
+        (nome, quantidade, valor)
+        values
+        (?,?,?)`
+}
+
+/**
  *
  * @param {string} coluna coluna que deseja usar como filtro
  * @param {string} valor valor aproximado que deseja usar como filtro
@@ -106,3 +119,14 @@ export const atualizaLanches = (id, tabela) =>
  */
 export const atualizaDrink = (id, tabela) =>
   `update ${tabela} set nome =?, sabor= ?, preco=? where id= ${id}`;
+
+
+  /**
+ * método reservado apenas para tabela Combos
+ * atualiza o item selecionado através da id
+ * @param {string} id id do item que deseja atualizar
+ * @param {string} tabela a qual o item selecionado pertence
+ * @returns {string} `update ${tabela} set values
+ */
+export const atualizaCombo = (id, tabela) =>
+  `update ${tabela} set nome =?, quantidade= ?, valor=? where id = ${id}`;

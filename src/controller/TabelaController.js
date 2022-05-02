@@ -1,3 +1,4 @@
+import { Combos } from "../model/CombosModel.js";
 import { bd } from "../services/sqlite-db.js";
 
 import {
@@ -11,6 +12,8 @@ import {
   inserirLanches,
   atualizaDrink,
   inserirDrinks,
+  inserirCombo,
+  atualizaCombo,
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
@@ -169,6 +172,18 @@ export class TabelaController {
     });
   }
 
+  atualizarCombos(id, body){
+    return new Promise((resolve,reject) =>{
+      this.bd.run(atualizaCombo(id, this.tabela),
+      Object.values(body),
+      (result, err) => {
+        if (err) reject (err); 
+        resolve("Combo atualizado", result);
+      }
+      )
+    })
+  }
+
   /**
    * Insere novos valores na tabela Bebidas selecionada e
    * retorna uma Promise com o resultado da requisição.
@@ -204,5 +219,27 @@ export class TabelaController {
         }
       );
     });
+  }
+  incluirCombos(body) {
+    return new Promise((resolve, reject) =>{
+      this.bd.run(
+        inserirCombo(this.tabela), Object.values(body), 
+        (result, err) =>{
+          if (err) reject(erro(err));
+          resolve ("Combo adicionado com sucesso");
+        }
+      )
+    })
+  }
+  incluirCombos(body) {
+    return new Promise((resolve, reject) =>{
+      this.bd.run(
+        inserirCombo(this.tabela), Object.values(body), 
+        (result, err) =>{
+          if (err) reject(erro(err));
+          resolve ("Combo adicionado com sucesso");
+        }
+      )
+    })
   }
 }
