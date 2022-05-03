@@ -36,13 +36,16 @@ combos.router.get((req, res) => {
     });
 });
 
-combos.router.post((req, res) =>{
-  let {nome, quantidade, valor } = req.body;
+combos.router.post((req, res) => {
+  let { nome, quantidade, valor } = req.body;
   combos.Tabela.incluirCombos(req.body)
-  .then(msg => {res.send(msg)})
-  .catch(err =>{res.send(msg)})
+    .then((msg) => {
+      res.send(msg);
+    })
+    .catch((err) => {
+      res.send(msg);
+    });
 });
-
 
 combos.router.filter("col", "valor", (req, res) => {
   const { col, valor } = req.params;
@@ -54,11 +57,11 @@ combos.router.filter("col", "valor", (req, res) => {
     });
 });
 
-combos.router.put("id", (req,res) => {
+combos.router.put("id", (req, res) => {
   combos.Tabela.atualizarCombos(req.params.id, req.body)
-  .then((data) => res.status(200).json({ [data]: req.params.id }))
-  .catch((err) => res.status(428).json({ erro: err }));
-})
+    .then((data) => res.status(200).json({ [data]: req.params.id }))
+    .catch((err) => res.status(428).json({ erro: err }));
+});
 
 combos.router.getOnly("id", (req, res) => {
   combos.Tabela.requisitarItem(req.params.id)
