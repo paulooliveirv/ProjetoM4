@@ -16,6 +16,7 @@ import {
   inserirCombo,
   inserirPetiscos,
   atualizaCombo,
+  updatePetiscos
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
@@ -251,6 +252,17 @@ export class TabelaController {
         (result, err) => {
           if(err) reject(erro(err));
           resolve ("Petiscos adicionado com sucesso");
+        }
+      )
+    })
+  }
+  atualizarPetiscos(id, body){
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        updatePetiscos(this.tabela, id), Object.values(body),
+        (result, err) => {
+          if (err) reject(erro(err));
+          resolve ("Petiscos atualizado com sucesso")
         }
       )
     })

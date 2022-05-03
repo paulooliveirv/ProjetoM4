@@ -135,4 +135,7 @@ export const inserirPetiscos = (tabela) =>
 `insert into ${tabela}
 (nome, preco, tamanho)
 values
-(?,?,?)`
+(?,?,?)`;
+
+export const updatePetiscos = (tabela, id) =>
+`update ${tabela} set nome =?, preco =?,tamanho =? where id = ${id}`

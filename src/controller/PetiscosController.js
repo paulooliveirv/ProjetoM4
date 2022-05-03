@@ -20,6 +20,18 @@ rotaPetiscos.get((req, res) => {
         .catch(err =>{res.send(err)})
     });
 
+    rotaPetiscos.put("id",(req, res) => {
+        const {id} = req.params
+        tabelaPetiscos.atualizarPetiscos(id, req.body)
+        .then(data => {res.json(data)})
+        .catch(err => {res.send(err)})
+    })
+
+    rotaPetiscos.getOnly("id", (req, res) => {
+        tabelaPetiscos.requisitarItem(req.params.id)
+        .then(data => {res.json(data)})
+        .catch(err => {res.send(err)})
+    })
     
 
 
