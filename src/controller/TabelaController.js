@@ -1,4 +1,3 @@
-import { Combos } from "../model/CombosModel.js";
 import { bd } from "../services/sqlite-db.js";
 
 import {
@@ -13,7 +12,9 @@ import {
   atualizaDrink,
   inserirDrinks,
   inserirCombo,
+  inserirPetiscos,
   atualizaCombo,
+  updatePetiscos,
 } from "../utils/dbComandHelper.js";
 import { erro } from "../utils/LogHelper.js";
 
@@ -239,6 +240,30 @@ export class TabelaController {
         (result, err) => {
           if (err) reject(erro(err));
           resolve("Combo adicionado com sucesso");
+        }
+      );
+    });
+  }
+  incluirPetiscos(body) {
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        inserirPetiscos(this.tabela),
+        Object.values(body),
+        (result, err) => {
+          if (err) reject(erro(err));
+          resolve("Petiscos adicionado com sucesso");
+        }
+      );
+    });
+  }
+  atualizarPetiscos(id, body) {
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        updatePetiscos(this.tabela, id),
+        Object.values(body),
+        (result, err) => {
+          if (err) reject(erro(err));
+          resolve("Petiscos atualizado com sucesso");
         }
       );
     });
