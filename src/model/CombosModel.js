@@ -13,7 +13,6 @@ export class Combos {
    * @param {float} valor
    */
   constructor(nome, quantidade, valor) {
-
     /**
      * @property nome do combo
      * @private
@@ -33,7 +32,7 @@ export class Combos {
      * @property medida em mililitros da bebida
      * @private
      */
-}
+  }
 
   /**
    * @returns nome da bebida

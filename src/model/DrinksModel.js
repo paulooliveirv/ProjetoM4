@@ -13,7 +13,7 @@ export class Drinks {
    * @param {float} preco
    */
 
-  constructor(nome, sabor,  preco) {
+  constructor(nome, sabor, preco) {
     if (this.constructor == Drinks)
       throw new Error(
         erro("Não é possível instanciar DrinksModel diretamente")
@@ -60,8 +60,6 @@ export class Drinks {
   get sabor() {
     return this._sabor;
   }
-
- 
 
   /**
    * @returns preço do drink

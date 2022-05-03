@@ -25,7 +25,7 @@ export class Router {
      * @private
      * @property {function} Instancia da funcção Router do express
      */
-    this._router = express.Router({ caseSensitive: false }); 
+    this._router = express.Router({ caseSensitive: false });
   }
   /**
   
@@ -70,14 +70,14 @@ export class Router {
   getOnly(params, callbackfn) {
     this._router.get(`/${this._caminho}/:${params}`, callbackfn);
   }
-  
+
   /**
-   * 
+   *
    * Metodo get com dois parametros para atribuição de uma função callback
-   * @param {string} params coluna utilizada como filtro 
+   * @param {string} params coluna utilizada como filtro
    * @param {string} params2 valor aproximado utilizado como filtro
    * @param {requestCallback} callbackfn  maneja a resposta da requisição
-   * 
+   *
    * @example this.filter('col', 'row', ()=>{
    * //
    * })

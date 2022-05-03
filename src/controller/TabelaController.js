@@ -114,8 +114,6 @@ export class TabelaController {
     });
   }
 
-
- 
   atualizarBebida(id, body) {
     return new Promise((resolve, reject) => {
       this.bd.run(
@@ -139,7 +137,7 @@ export class TabelaController {
    * .then(data => ...)
    * .catch(err => ...)
    */
-   incluirDrink(body) {
+  incluirDrink(body) {
     return new Promise((resolve, reject) => {
       this.bd.run(inserirDrinks(body, this.tabela), (resul, err) => {
         if (err) reject(erro(err));
@@ -172,16 +170,17 @@ export class TabelaController {
     });
   }
 
-  atualizarCombos(id, body){
-    return new Promise((resolve,reject) =>{
-      this.bd.run(atualizaCombo(id, this.tabela),
-      Object.values(body),
-      (result, err) => {
-        if (err) reject (err); 
-        resolve("Combo atualizado", result);
-      }
-      )
-    })
+  atualizarCombos(id, body) {
+    return new Promise((resolve, reject) => {
+      this.bd.run(
+        atualizaCombo(id, this.tabela),
+        Object.values(body),
+        (result, err) => {
+          if (err) reject(err);
+          resolve("Combo atualizado", result);
+        }
+      );
+    });
   }
 
   /**
@@ -221,25 +220,27 @@ export class TabelaController {
     });
   }
   incluirCombos(body) {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       this.bd.run(
-        inserirCombo(this.tabela), Object.values(body), 
-        (result, err) =>{
+        inserirCombo(this.tabela),
+        Object.values(body),
+        (result, err) => {
           if (err) reject(erro(err));
-          resolve ("Combo adicionado com sucesso");
+          resolve("Combo adicionado com sucesso");
         }
-      )
-    })
+      );
+    });
   }
   incluirCombos(body) {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
       this.bd.run(
-        inserirCombo(this.tabela), Object.values(body), 
-        (result, err) =>{
+        inserirCombo(this.tabela),
+        Object.values(body),
+        (result, err) => {
           if (err) reject(erro(err));
-          resolve ("Combo adicionado com sucesso");
+          resolve("Combo adicionado com sucesso");
         }
-      )
-    })
+      );
+    });
   }
 }
