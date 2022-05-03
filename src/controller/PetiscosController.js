@@ -32,6 +32,19 @@ rotaPetiscos.get((req, res) => {
         .then(data => {res.json(data)})
         .catch(err => {res.send(err)})
     })
+
+    rotaPetiscos.filter("col", "valor", (req, res) => {
+        const { col, valor} = req.params
+        tabelaPetiscos.filtraTabela(col, valor)
+        .then(data => {res.json(data)})
+        .catch(err => {res.send(err)})
+    })
+
+    rotaPetiscos.delete("id", (req, res) => {
+        tabelaPetiscos.deletarItem(req.params.id)
+        .then(data => {res.json(data)})
+        .catch(err => {res.send(err)})
+    })
     
 
 
